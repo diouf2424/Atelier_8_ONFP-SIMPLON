@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voiture index{% endblock %}
+
+{% block body %}
+    <h1>Voiture index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Matricule</th>
+                <th>Marque</th>
+                <th>Model</th>
+                <th>Assurance</th>
+                <th>Visitetechnique</th>
+                <th>Cartegrise</th>
+                <th>Pneudesecours</th>
+                <th>Materieldesecours</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voiture in voitures %}
+            <tr>
+                <td>{{ voiture.id }}</td>
+                <td>{{ voiture.matricule }}</td>
+                <td>{{ voiture.marque }}</td>
+                <td>{{ voiture.model }}</td>
+                <td>{{ voiture.assurance ? 'Yes' : 'No' }}</td>
+                <td>{{ voiture.visitetechnique ? 'Yes' : 'No' }}</td>
+                <td>{{ voiture.cartegrise ? 'Yes' : 'No' }}</td>
+                <td>{{ voiture.pneudesecours ? 'Yes' : 'No' }}</td>
+                <td>{{ voiture.materieldesecours ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('voiture_show', {'id': voiture.id}) }}">show</a>
+                    <a href="{{ path('voiture_edit', {'id': voiture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('voiture_new') }}">Create new</a>
+{% endblock %}
